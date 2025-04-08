@@ -1,0 +1,26 @@
+services:
+  maisfoco-job-send-recomendation:
+    build:
+      context: .
+      dockerfile: dockerfiles/Dockerfile.job_send_recomendation
+    image: maisfoco-job:latest
+    container_name: maisfoco-job-send-recomendation
+    restart: always
+    volumes:
+      - ./.env.local:/app/.env.local
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - ./.env.local
+    deploy:
+      resources:
+        limits:
+          cpus: '0.20'
+          memory: 256M
+    networks:
+      - maisfoco-network
+
+networks:
+  maisfoco-network:
+    name: maisfoco-network
+    driver: bridge

@@ -1,0 +1,53 @@
+<table cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #FFF8E3; border: 3px solid #4C3D3D; box-shadow: 3px 3px 0 #4C3D3D; margin-bottom: 30px; border-radius: 5px;">
+  <tr>
+    <td style="padding: 20px;">
+      <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr>
+          <td style="border-bottom: 3px solid #4C3D3D; padding-bottom: 10px; margin-bottom: 15px;">
+            <h2 style="color: #4C3D3D; font-family: 'Space Mono', monospace; margin-top: 0; text-align: left;">👉🏻 Plataforma: Amazon</h2>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding-top: 15px;">
+            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tr>
+                <td style="font-size: 22px; font-weight: bold; color: #4C3D3D; font-family: 'Space Mono', monospace; padding-bottom: 15px;">📍 ${amazon.title}</td>
+              </tr>
+              <tr>
+                <td align="center" style="padding-bottom: 20px;">
+                  <img src="${amazon.thumbnails_links}" alt="${amazon.title}" style="max-width: 300px; border: 3px solid #4C3D3D; box-shadow: 3px 3px 0 #4C3D3D; border-radius: 5px;">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                      <td style="font-size: 18px; color: #4C3D3D; font-family: 'Space Mono', monospace; padding-bottom: 8px;">🎭 Gênero: Literatura</td>
+                    </tr>
+                    <tr>
+                      <td style="font-size: 18px; color: #4C3D3D; font-family: 'Space Mono', monospace; padding-bottom: 8px;">⭐ Avaliação: ${amazon.geral_evaluation}</td>
+                    </tr>
+                    <tr>
+                      <td style="font-style: italic; font-size: 18px; color: #4C3D3D; font-family: 'Space Mono', monospace; padding: 15px 0;">🗒️ ${amazon.sinopse.trim_space()}</td>
+                    </tr>
+                    <tr>
+                      <td style="font-size: 18px; color: #4C3D3D; font-family: 'Space Mono', monospace; padding-bottom: 8px;">🪙 Preço: ${amazon.price_printed or { 0.00 }}</td>
+                    </tr>
+                    <tr>
+                      <td style="font-size: 18px; color: #4C3D3D; font-family: 'Space Mono', monospace; padding-bottom: 8px;">🪙 Preço digital: ${amazon.price_kindle_ebook or { 0.00 }}</td>
+                    </tr>
+                    <tr>
+                      <td align="center" style="padding-top: 20px;">
+                        <a href="${amazon.link}" style="display: inline-block; padding: 12px 20px; background-color: #FFD93D; border: 3px solid #4C3D3D; box-shadow: 3px 3px 0 #4C3D3D; color: #4C3D3D; text-decoration: none; font-weight: bold; font-size: 18px; border-radius: 5px; font-family: 'Space Mono', monospace;">Ler agora</a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

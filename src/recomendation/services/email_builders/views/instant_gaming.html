@@ -1,0 +1,72 @@
+<table cellspacing="0" cellpadding="0" border="0" width="100%"
+  style="background-color: #FFF8E3; border: 3px solid #4C3D3D; box-shadow: 3px 3px 0 #4C3D3D; margin-bottom: 30px; border-radius: 5px;">
+  <tr>
+    <td style="padding: 20px;">
+      <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr>
+          <td style="border-bottom: 3px solid #4C3D3D; padding-bottom: 10px; margin-bottom: 15px;">
+            <h2 style="color: #4C3D3D; font-family: 'Space Mono', monospace; margin-top: 0;">👉🏻 Plataforma: Instant
+              Gaming</h2>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding-top: 15px;">
+            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tr>
+                <td align="center" style="padding-bottom: 20px;">
+                  <img src="${instant_gaming.images[0] or { return '' }.image_url}" alt="${instant_gaming.title}"
+                    style="max-width: 300px; border: 3px solid #4C3D3D; box-shadow: 3px 3px 0 #4C3D3D; border-radius: 5px;">
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style="font-size: 22px; font-weight: bold; color: #4C3D3D; font-family: 'Space Mono', monospace; padding-bottom: 15px;">
+                  📍 ${instant_gaming.title}</td>
+              </tr>
+              <tr>
+                <td>
+                  <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                      <td style="color: #4C3D3D; font-family: 'Space Mono', monospace; padding-bottom: 5px; font-size: 18px;">🎭 Gênero:
+                        ${instant_gaming.genders}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: #4C3D3D; font-family: 'Space Mono', monospace; padding-bottom: 5px; font-size: 18px;">🎮
+                        Plataforma de ativação: ${instant_gaming.activating_plataform}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: #4C3D3D; font-family: 'Space Mono', monospace; padding-bottom: 5px; font-size: 18px;">⭐
+                        Avaliação: ${instant_gaming.review_general}</td>
+                    </tr>
+                    <tr>
+                      <td
+                        style="font-style: italic; color: #4C3D3D; font-family: 'Space Mono', monospace; padding: 15px 0; font-size: 18px;">
+                        🗒️ ${instant_gaming.about.trim_space()}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: #4C3D3D; font-family: 'Space Mono', monospace; padding-bottom: 5px; font-size: 18px;">🎬 Trailer:
+                        <a href="${instant_gaming.preview_video}"
+                          style="color: #4C3D3D; font-weight: bold; font-size: 18px;">Assistir</a></td>
+                    </tr>
+                    <tr>
+                      <td style="color: #4C3D3D; font-family: 'Space Mono', monospace; padding-bottom: 5px; font-size: 18px;">🪙 Preço:
+                        R$ ${instant_gaming.get_price()} (-${instant_gaming.get_discount()}%) | ~R$
+                        ${instant_gaming.get_old_price()}~</td>
+                    </tr>
+                    <tr>
+                      <td align="center" style="padding-top: 15px;">
+                        <a href="${instant_gaming.link}"
+                          style="display: inline-block; padding: 10px 15px; background-color: #FFD93D; border: 3px solid #4C3D3D; box-shadow: 3px 3px 0 #4C3D3D; color: #4C3D3D; text-decoration: none; font-weight: bold; border-radius: 5px; font-family: 'Space Mono', monospace; font-size: 18px;">Jogar
+                          agora</a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

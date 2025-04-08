@@ -1,0 +1,38 @@
+/* Radio input brutalist styles */
+input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
+  font-weight: bold;
+  color: var(--font-color);
+}
+
+input[type="radio"] + .radio-label::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  border: 3px solid var(--border-color);
+  border-radius: 50%;
+  background-color: var(--background-color);
+  box-shadow: 3px 3px 0 var(--border-color);
+  transition: all 0.1s ease;
+}
+
+input[type="radio"]:checked + .radio-label::before {
+  background-color: var(--primary-color);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--border-color);
+}
+
+input[type="radio"]:focus + .radio-label::before {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}

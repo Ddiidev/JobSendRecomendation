@@ -1,0 +1,52 @@
+FROM ubuntu:20.04
+
+# Evitar interações durante instalação de pacotes
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Instalar dependências
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    build-essential \
+    libssl-dev \
+    libpq-dev \
+    libsqlite3-dev \
+    postgresql \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# Faz o clone do repositório via SSH
+WORKDIR /tmp
+# Clone Vlang
+RUN git clone https://github.com/vlang/v && \
+    cd v && \
+    make && \
+    ./v symlink
+
+# Verificar a instalação
+RUN v --version
+
+# Criar diretório para a aplicação
+WORKDIR /app
+
+# Clonar o repositório MaisFoco
+COPY . .
+
+# Instalar dependências do projeto
+RUN v install https://github.com/ken0x0a/v-dotenv
+
+# Copiar o arquivo .env.local (será substituído pelo volume)
+COPY .env.local .env.local
+
+# Compilar o projeto
+RUN v -enable-globals -prod . -o JobSendRecomendation
+
+# Script de inicialização
+COPY ../start.sh /app/start.sh
+RUN chmod +x /app/start.sh
+RUN ls -la /app/start.sh
+
+EXPOSE 9009
+
+# Comando para iniciar a aplicação
+CMD ["/bin/bash", "/app/start.sh"]

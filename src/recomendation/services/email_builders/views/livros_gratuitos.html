@@ -1,0 +1,66 @@
+<table cellspacing="0" cellpadding="0" border="0" width="100%"
+  style="background-color: #FFF8E3; border: 3px solid #4C3D3D; box-shadow: 3px 3px 0 #4C3D3D; margin-bottom: 30px; border-radius: 5px;">
+  <tr>
+    <td style="padding: 20px;">
+      <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr>
+          <td style="border-bottom: 3px solid #4C3D3D; padding-bottom: 10px; margin-bottom: 15px;">
+            <h2 style="color: #4C3D3D; font-family: 'Space Mono', monospace; margin-top: 0;">👉🏻 Plataforma: Livros
+              Gratuitos</h2>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding-top: 15px;">
+            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tr>
+                <td align="center" style="padding-bottom: 20px;">
+                  <img src="${livro_gratuito.thumbnail_link}" alt="${livro_gratuito.title}"
+                    style="max-width: 300px; border: 3px solid #4C3D3D; box-shadow: 3px 3px 0 #4C3D3D; border-radius: 5px;">
+                </td>
+              </tr>
+              <tr>
+                <td
+                  style="font-size: 22px; font-weight: bold; color: #4C3D3D; font-family: 'Space Mono', monospace; padding-bottom: 15px;">
+                  📍 ${livro_gratuito.title}</td>
+              </tr>
+              <tr>
+                <td>
+                  <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                      <td style="color: #4C3D3D; font-family: 'Space Mono', monospace; padding-bottom: 5px; font-size: 18px;">🎭 Gênero:
+                        ${livro_gratuito.genders}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: #4C3D3D; font-family: 'Space Mono', monospace; padding-bottom: 5px; font-size: 18px;">✍🏻 Autor:
+                        ${livro_gratuito.author}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: #4C3D3D; font-family: 'Space Mono', monospace; padding-bottom: 5px; font-size: 18px;">📖 Digital:
+                        Tem PDF ${livro_gratuito.has_pdf()}, Tem Leitura online ${livro_gratuito.has_read_online()}</td>
+                    </tr>
+                    <tr>
+                      <td
+                        style="font-style: italic; color: #4C3D3D; font-family: 'Space Mono', monospace; padding: 15px 0; font-size: 18px;">
+                        🗒️ ${livro_gratuito.overview.trim_space()}</td>
+                    </tr>
+                    <tr>
+                      <td style="color: #4C3D3D; font-family: 'Space Mono', monospace; padding-bottom: 5px; font-size: 18px;">🪙 Preço:
+                        R$ 0.00</td>
+                    </tr>
+                    <tr>
+                      <td align="center" style="padding-top: 15px;">
+                        <a href="${livro_gratuito.link}"
+                          style="display: inline-block; padding: 10px 15px; background-color: #FFD93D; border: 3px solid #4C3D3D; box-shadow: 3px 3px 0 #4C3D3D; color: #4C3D3D; text-decoration: none; font-weight: bold; border-radius: 5px; font-family: 'Space Mono', monospace; font-size: 18px;">Ler
+                          agora</a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
