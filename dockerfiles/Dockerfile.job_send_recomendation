@@ -33,7 +33,7 @@ WORKDIR /app
 COPY . .
 
 # Instalar dependências do projeto
-RUN v install https://github.com/ken0x0a/v-dotenv
+RUN v install
 
 # Copiar o arquivo .env.local (será substituído pelo volume)
 COPY .env.local .env.local
