@@ -3,7 +3,7 @@ module services
 import json
 import net.http
 import wpapi.models
-import shareds.conf_env
+import mf_core.conf_env
 
 pub fn send_text(param models.RequestText) !models.ResponseText {
 	env := conf_env.load_env()

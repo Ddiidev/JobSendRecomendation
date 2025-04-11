@@ -1,8 +1,8 @@
 module controllers
 
-import shareds.logger
-import mercado_livre_play.models
-import mercado_livre_play.repository
+import mf_core.logger
+import mf_core.features.mercado_livre_play.models
+import mf_core.features.mercado_livre_play.repository
 
 pub fn get_recomendation(mut log logger.ILogger) !models.MercadoLivrePlayProduct {
 	data_entities := repository.get_recomendation() or {

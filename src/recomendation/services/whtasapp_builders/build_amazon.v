@@ -1,7 +1,7 @@
 module whtasapp_builders
 
 import wpapi.services as wpapi_services
-import amazon.models as amazon_models
+import mf_core.features.amazon.models as amazon_models
 
 fn build_amazon(whatsapp string, amazon_products []amazon_models.AmazonProduct) {
 	for amazon in amazon_products {

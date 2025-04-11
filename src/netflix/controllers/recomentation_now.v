@@ -1,8 +1,8 @@
 module controllers
 
-import shareds.logger
-import netflix.models
-import netflix.repository
+import mf_core.logger
+import mf_core.features.netflix.models
+import mf_core.features.netflix.repository
 
 pub fn get_recomendation(mut log logger.ILogger) !models.NetflixProduct {
 	data_entities := repository.get_recomendation() or {

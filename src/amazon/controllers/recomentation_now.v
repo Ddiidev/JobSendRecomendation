@@ -1,8 +1,8 @@
 module controllers
 
-import amazon.models
-import shareds.logger
-import amazon.repository
+import mf_core.logger
+import mf_core.features.amazon.models
+import mf_core.features.amazon.repository
 
 pub fn get_recomendation(mut log logger.ILogger) ![]models.AmazonProduct {
 	data_entities := repository.get_recomendation() or {

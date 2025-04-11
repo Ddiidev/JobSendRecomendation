@@ -1,6 +1,6 @@
 module email_builders
 
-import amazon.models as amazon_models
+import mf_core.features.amazon.models as amazon_models
 
 // Função para gerar o HTML de um produto da Amazon
 fn generate_amazon_html(amazon amazon_models.AmazonProduct) string {

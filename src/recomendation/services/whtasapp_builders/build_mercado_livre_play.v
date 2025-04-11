@@ -1,7 +1,7 @@
 module whtasapp_builders
 
 import wpapi.services as wpapi_services
-import mercado_livre_play.models as mercado_livre_play_models
+import mf_core.features.mercado_livre_play.models as mercado_livre_play_models
 
 fn build_mercado_livre_play(whatsapp string, mercado_livre_play mercado_livre_play_models.MercadoLivrePlayProduct) {
 	mut text := '👉🏻 Plataforma: *Mercado Livre Play*\n'

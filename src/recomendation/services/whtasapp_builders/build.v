@@ -1,11 +1,11 @@
 module whtasapp_builders
 
 import repository
-import amazon.models as amazon_models
-import netflix.models as netflix_models
-import instant_gaming.models as instant_gaming_models
-import livros_gratuitos.models as livros_gratuitos_models
-import mercado_livre_play.models as mercado_livre_play_models
+import mf_core.features.amazon.models as amazon_models
+import mf_core.features.netflix.models as netflix_models
+import mf_core.features.instant_gaming.models as instant_gaming_models
+import mf_core.features.livros_gratuitos.models as livros_gratuitos_models
+import mf_core.features.mercado_livre_play.models as mercado_livre_play_models
 
 // Função para construir e enviar um email com recomendações de todas as plataformas
 pub fn build_all_recommendations(contact_id int, whatsapp string,

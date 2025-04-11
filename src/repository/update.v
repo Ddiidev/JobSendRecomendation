@@ -2,16 +2,16 @@ module repository
 
 import time
 import entities
-import shareds.db
+import mf_core.infradb
 
 pub fn update_latest_recomendation(id int) ! {
-	mut dbase := db.ConnectionDb.new()!
+	mut db := infradb.ConnectionDb.new()!
 
 	defer {
-		dbase.close()
+		db.close()
 	}
 
-	sql dbase.conn {
+	sql db.conn {
 		update entities.Contact set latest_recomendation_at = time.now() where id == id
 	}!
 }

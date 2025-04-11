@@ -1,7 +1,7 @@
 module whtasapp_builders
 
 import wpapi.services as wpapi_services
-import instant_gaming.models as instant_gaming_models
+import mf_core.features.instant_gaming.models as instant_gaming_models
 
 fn build_instant_gaming(whatsapp string, instant_gaming instant_gaming_models.InstantGamingProduct) {
 	mut text := '👉🏻 Plataforma: *Instant Gaming*\n'

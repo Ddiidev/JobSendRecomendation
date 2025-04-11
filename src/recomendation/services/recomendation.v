@@ -1,15 +1,15 @@
 module services
 
-import shareds.logger
-import netflix.models as netflix_models
+import mf_core.logger
+import mf_core.features.netflix.models as netflix_models
 import repository as contact_repository
 import recomendation.services.email_builders
 import recomendation.services.whtasapp_builders
 import amazon.controllers as amazon_controllers
 import netflix.controllers as netflix_controllers
-import instant_gaming.models as instant_gaming_models
-import livros_gratuitos.models as livros_gratuitos_models
-import mercado_livre_play.models as mercado_livre_play_models
+import mf_core.features.instant_gaming.models as instant_gaming_models
+import mf_core.features.livros_gratuitos.models as livros_gratuitos_models
+import mf_core.features.mercado_livre_play.models as mercado_livre_play_models
 import instant_gaming.controllers as instant_gaming_controllers
 import livros_gratuitos.controllers as livros_gratuitos_controllers
 import mercado_livre_play.controllers as mercado_livre_play_controllers

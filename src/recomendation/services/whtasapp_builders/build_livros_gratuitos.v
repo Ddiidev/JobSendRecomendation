@@ -1,7 +1,7 @@
 module whtasapp_builders
 
 import wpapi.services as wpapi_services
-import livros_gratuitos.models as instant_gaming_models
+import mf_core.features.livros_gratuitos.models as instant_gaming_models
 
 fn build_livros_gratuitos(whatsapp string, livro_gratuito instant_gaming_models.LivrosGratuitosProduct) {
 	mut text := '👉🏻 Plataforma: *Livros Gratuitos*\n'
