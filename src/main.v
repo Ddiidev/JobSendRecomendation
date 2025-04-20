@@ -3,12 +3,13 @@ module main
 import time
 import maisfoco_server
 import recomendation.services
+import mf_core.context_service as ctx_service
 
 const sabado = 6
 const domingo = 7
 
 fn main() {
-	println('Iniciando serviço de recomendação...')
+	mut ctx := ctx_service.ContextService{}
 	mut is_primary_runner := true
 
 	go maisfoco_server.start_server()
@@ -50,25 +51,60 @@ fn main() {
 
 		$if prod {
 			println('--> PRODUÇÃO')
+			ctx.log_info({
+				'path':       'MAIN | ENV: PROD'
+				'statusText': 'success'
+			})
+
 			if !(current_time > range_start && current_time < range_end && is_primary_runner) {
 				println('Aguardando ${wait_time.debug()} até o próximo envio...')
+				ctx.log_info({
+					'path':       'MAIN | Aguardando ${wait_time.debug()} até o próximo envio...'
+					'statusText': 'success'
+				})
+
 				time.sleep(wait_time)
 			} else if current_time > range_start && current_time < range_end && is_primary_runner {
 				println('Primeira vez: Executando imediatamente por estar entre as ${range_start.custom_format('hh:mm:ss')}h e ${range_end.custom_format('hh:mm:ss')}h')
+				ctx.log_info({
+					'path':       'MAIN | Primeira vez: Executando imediatamente por estar entre as ${range_start.custom_format('hh:mm:ss')}h e ${range_end.custom_format('hh:mm:ss')}h'
+					'statusText': 'success'
+				})
 			}
 		} $else $if debug ? {
 			println('--> DESENVOLVIMENTO')
+			ctx.log_info({
+				'path':       'MAIN | ENV: DEBUG'
+				'statusText': 'success'
+			})
 			if !(current_time > range_start && current_time < range_end && is_primary_runner) {
 				println('Aguardando ${wait_time.debug()} até o próximo envio...')
+				ctx.log_info({
+					'path':       'MAIN | Aguardando ${wait_time.debug()} até o próximo envio...'
+					'statusText': 'success'
+				})
 				time.sleep(time.minute * 2)
 			} else if current_time > range_start && current_time < range_end && is_primary_runner {
 				println('Primeira vez: Executando imediatamente por estar entre as ${range_start.custom_format('hh:mm:ss')}h e ${range_end.custom_format('hh:mm:ss')}h')
+				ctx.log_info({
+					'path':       'MAIN | Primeira vez: Executando imediatamente por estar entre as ${range_start.custom_format('hh:mm:ss')}h e ${range_end.custom_format('hh:mm:ss')}h'
+					'statusText': 'success'
+				})
 			}
 		}
 		is_primary_runner = false
 
 		println('--> Enviando recomendações...')
+		ctx.log_info({
+			'path':       'MAIN | Iniciando envio de recomendações...'
+			'statusText': 'success'
+		})
+
 		services.send_recomendations()
 		println('--> Enviado')
+		ctx.log_info({
+			'path':       'MAIN | Enviado.'
+			'statusText': 'success'
+		})
 	}
 }

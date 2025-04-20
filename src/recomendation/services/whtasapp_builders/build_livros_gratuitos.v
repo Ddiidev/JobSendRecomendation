@@ -1,9 +1,10 @@
 module whtasapp_builders
 
 import wpapi.services as wpapi_services
-import mf_core.features.livros_gratuitos.models as instant_gaming_models
+import mf_core.context_service as ctx_service
+import mf_core.features.livros_gratuitos.models as livros_gratuitos_models
 
-fn build_livros_gratuitos(whatsapp string, livro_gratuito instant_gaming_models.LivrosGratuitosProduct) {
+fn build_livros_gratuitos(ctx ctx_service.ContextService, whatsapp string, livro_gratuito livros_gratuitos_models.LivrosGratuitosProduct) {
 	mut text := '👉🏻 Plataforma: *Livros Gratuitos*\n'
 	text += '📍 Título: *${livro_gratuito.title}*\n'
 	text += '🎭 Genêro: *${livro_gratuito.genders}*\n'
@@ -17,5 +18,15 @@ fn build_livros_gratuitos(whatsapp string, livro_gratuito instant_gaming_models.
 		to:      whatsapp
 		url:     livro_gratuito.thumbnail_link
 		caption: text
-	) or {}
+	) or {
+		ctx.log_info({
+			'path':        '${@FN}'
+			'status_text': 'fail'
+			'list_error':  {
+				'product': livro_gratuito.id.str()
+				'error': err.msg()
+				'code':  err.code().str()
+			}
+		})
+	}
 }

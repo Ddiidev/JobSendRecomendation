@@ -1,9 +1,10 @@
 module whtasapp_builders
 
 import wpapi.services as wpapi_services
+import mf_core.context_service as ctx_service
 import mf_core.features.mercado_livre_play.models as mercado_livre_play_models
 
-fn build_mercado_livre_play(whatsapp string, mercado_livre_play mercado_livre_play_models.MercadoLivrePlayProduct) {
+fn build_mercado_livre_play(ctx ctx_service.ContextService, whatsapp string, mercado_livre_play mercado_livre_play_models.MercadoLivrePlayProduct) {
 	mut text := '👉🏻 Plataforma: *Mercado Livre Play*\n'
 	text += '📍 Título: *${mercado_livre_play.title}*\n'
 	text += '📅 Ano: *${mercado_livre_play.year}*\n'
@@ -19,5 +20,15 @@ fn build_mercado_livre_play(whatsapp string, mercado_livre_play mercado_livre_pl
 		to:      whatsapp
 		url:     mercado_livre_play.thumbnails_links
 		caption: text
-	) or {}
+	) or {
+		ctx.log_info({
+			'path':        '${@FN}'
+			'status_text': 'fail'
+			'list_error':  {
+				'product': mercado_livre_play.id.str()
+				'error': err.msg()
+				'code':  err.code().str()
+			}
+		})
+	}
 }

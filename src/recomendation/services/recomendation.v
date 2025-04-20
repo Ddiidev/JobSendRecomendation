@@ -1,38 +1,85 @@
 module services
 
-import mf_core.logger
-import mf_core.features.netflix.models as netflix_models
+import time
 import repository as contact_repository
 import recomendation.services.email_builders
+import mf_core.context_service as ctx_service
 import recomendation.services.whtasapp_builders
 import amazon.controllers as amazon_controllers
 import netflix.controllers as netflix_controllers
-import mf_core.features.instant_gaming.models as instant_gaming_models
-import mf_core.features.livros_gratuitos.models as livros_gratuitos_models
-import mf_core.features.mercado_livre_play.models as mercado_livre_play_models
+import mf_core.features.netflix.models as netflix_models
 import instant_gaming.controllers as instant_gaming_controllers
 import livros_gratuitos.controllers as livros_gratuitos_controllers
+import mf_core.features.instant_gaming.models as instant_gaming_models
 import mercado_livre_play.controllers as mercado_livre_play_controllers
+import mf_core.features.livros_gratuitos.models as livros_gratuitos_models
+import mf_core.features.mercado_livre_play.models as mercado_livre_play_models
 
 pub fn send_recomendations() {
 	mut threads := []thread{}
-	mut log := logger.Logger.new('-test-', '-test-')
+	mut ctx := ctx_service.ContextService{}
+	start_req_time := time.now()
 
-	contatcs := contact_repository.get_all(0) or { return }
-	amazon_products := amazon_controllers.get_recomendation(mut log) or { [] }
-	netflix_product := netflix_controllers.get_recomendation(mut log) or {
+	defer {
+		current_time := time.now()
+		ctx.duration = current_time - start_req_time
+
+		ctx.log_info({
+			'path':        'ENVIO DE RECOMENDAÇÕES'
+			'status_code': f64(200)
+			'status_text': 'success'
+			'duration':    '${ctx.duration.seconds():.2f}'
+		})
+	}
+
+	fn_log_product := fn [mut ctx] (err IError, name_product string) {
+		ctx.log_server_action(
+			path:        'JOB: ENVIO DE RECOMENDAÇÕES(GET_PRODUTOS_${name_product})'
+			status_text: 'fail'
+			list_error:  {
+				'error_code': err.code().str()
+				'error':      err.msg()
+			}
+		)
+	}
+
+	contatcs := contact_repository.get_all(0) or {
+		ctx.log_server_action(
+			path:        'JOB: ENVIO DE RECOMENDAÇÕES(GET_CONTATOS)'
+			status_text: 'fail'
+			list_error:  {
+				'error_code': err.code().str()
+				'error':      err.msg()
+			}
+		)
+
+		return
+	}
+	amazon_products := amazon_controllers.get_recomendation(mut ctx) or {
+		fn_log_product(err, 'AMAZON')
+
+		[]
+	}
+	netflix_product := netflix_controllers.get_recomendation(mut ctx) or {
+		fn_log_product(err, 'NETFLIX')
+
 		netflix_models.NetflixProduct{}
 	}
-	instangaming_product := instant_gaming_controllers.get_recomendation(mut log) or {
+	instangaming_product := instant_gaming_controllers.get_recomendation(mut ctx) or {
+		fn_log_product(err, 'INSTANT_GAMING')
+
 		instant_gaming_models.InstantGamingProduct{}
 	}
-	livros_gratuitos_product := livros_gratuitos_controllers.get_recomendation(mut log) or {
+	livros_gratuitos_product := livros_gratuitos_controllers.get_recomendation(mut ctx) or {
+		fn_log_product(err, 'LIVROS_GRATUITOS')
+
 		livros_gratuitos_models.LivrosGratuitosProduct{}
 	}
-	mercado_livre_play_product := mercado_livre_play_controllers.get_recomendation(mut log) or {
+	mercado_livre_play_product := mercado_livre_play_controllers.get_recomendation(mut ctx) or {
+		fn_log_product(err, 'MERCADO_LIVRE_PLAY')
+
 		mercado_livre_play_models.MercadoLivrePlayProduct{}
 	}
-	dump(contatcs)
 
 	for contact in contatcs {
 		println('Número de threads atual: ${threads.len}')

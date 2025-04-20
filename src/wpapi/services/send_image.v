@@ -10,7 +10,6 @@ pub fn send_image(param models.RequestImage) !models.ResponseImage {
 
 	url := '${const_url}/${env.whatsapp_api_key_instance}/message/image'
 
-	// resp := http.post_json(url, json.encode(param))!
 	resp := http.fetch(
 		method:      .post
 		url:         url
@@ -20,7 +19,7 @@ pub fn send_image(param models.RequestImage) !models.ResponseImage {
 	)!
 
 	if resp.status_code != 200 {
-		return error('${resp.status_code} - ${resp.status_msg}')
+		return error_with_code(resp.status_msg, resp.status_code)
 	}
 
 	return json.decode(models.ResponseImage, resp.body) or { models.ResponseImage{} }
