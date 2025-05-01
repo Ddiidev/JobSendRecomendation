@@ -12,9 +12,9 @@ fn build_amazon(ctx ctx_service.ContextService, whatsapp string, amazon_products
 			list_error['contato'] = whatsapp
 
 			ctx.log_info({
-				'path': '${@FN}'
+				'path':        '${@FN}'
 				'status_text': 'fail'
-				'list_error': &list_error
+				'list_error':  &list_error
 			})
 		}
 	}

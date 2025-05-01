@@ -23,22 +23,22 @@ pub fn build_all_recommendations(contact_id int, email string,
 	start_time := time.now()
 
 	ctx.log_info({
-		'path': '${@FN} (${@MOD})${@FILE_LINE} (EMAIL)'
+		'path':       '${@FN} (${@MOD})${@FILE_LINE} (EMAIL)'
 		'statusText': 'success'
 		'additional': {
 			'contact_id': contact_id.str()
-			'msg': 'Iniciando geração de email de recomendações'
+			'msg':        'Iniciando geração de email de recomendações'
 		}
 	})
 
 	// Verificar se há pelo menos um produto para enviar
 	if amazon_products.len == 0 {
 		ctx.log_info({
-			'path': '${@FN} (${@MOD})${@FILE_LINE} (EMAIL)'
+			'path':       '${@FN} (${@MOD})${@FILE_LINE} (EMAIL)'
 			'statusText': 'success'
 			'additional': {
 				'contact_id': contact_id.str()
-				'msg': 'Nenhum produto para enviar'
+				'msg':        'Nenhum produto para enviar'
 			}
 		})
 		return
@@ -48,11 +48,11 @@ pub fn build_all_recommendations(contact_id int, email string,
 	sb.write_string(generate_html_header('Recomendações MaisFoco.life'))
 
 	ctx.log_info({
-		'path': '${@FN} (${@MOD})${@FILE_LINE} (EMAIL)'
+		'path':       '${@FN} (${@MOD})${@FILE_LINE} (EMAIL)'
 		'statusText': 'success'
 		'additional': {
 			'contact_id': contact_id.str()
-			'msg': 'Header gerado'
+			'msg':        'Header gerado'
 		}
 	})
 
@@ -61,11 +61,11 @@ pub fn build_all_recommendations(contact_id int, email string,
 	}
 
 	ctx.log_info({
-		'path': '${@FN} (${@MOD})${@FILE_LINE} (EMAIL)'
+		'path':       '${@FN} (${@MOD})${@FILE_LINE} (EMAIL)'
 		'statusText': 'success'
 		'additional': {
 			'contact_id': contact_id.str()
-			'msg': 'Amazon gerada'
+			'msg':        'Amazon gerada'
 		}
 	})
 
@@ -73,11 +73,11 @@ pub fn build_all_recommendations(contact_id int, email string,
 	sb.write_string(generate_instant_gaming_html(instant_gaming_product))
 
 	ctx.log_info({
-		'path': '${@FN} (${@MOD})${@FILE_LINE} (EMAIL)'
+		'path':       '${@FN} (${@MOD})${@FILE_LINE} (EMAIL)'
 		'statusText': 'success'
 		'additional': {
 			'contact_id': contact_id.str()
-			'msg': 'Instant Gaming gerada'
+			'msg':        'Instant Gaming gerada'
 		}
 	})
 
@@ -86,11 +86,11 @@ pub fn build_all_recommendations(contact_id int, email string,
 		sb.write_string(generate_livros_gratuitos_html(livros_gratuitos_product))
 
 		ctx.log_info({
-			'path': '${@FN} (${@MOD})${@FILE_LINE} (EMAIL)'
+			'path':       '${@FN} (${@MOD})${@FILE_LINE} (EMAIL)'
 			'statusText': 'success'
 			'additional': {
 				'contact_id': contact_id.str()
-				'msg': 'Livros Gratuitos gerada'
+				'msg':        'Livros Gratuitos gerada'
 			}
 		})
 	}
@@ -99,11 +99,11 @@ pub fn build_all_recommendations(contact_id int, email string,
 	sb.write_string(generate_mercado_livre_play_html(mercado_livre_play_product))
 
 	ctx.log_info({
-		'path': '${@FN} (${@MOD})${@FILE_LINE} (EMAIL)'
+		'path':       '${@FN} (${@MOD})${@FILE_LINE} (EMAIL)'
 		'statusText': 'success'
 		'additional': {
 			'contact_id': contact_id.str()
-			'msg': 'Mercado Livre Play gerada'
+			'msg':        'Mercado Livre Play gerada'
 		}
 	})
 
@@ -111,22 +111,22 @@ pub fn build_all_recommendations(contact_id int, email string,
 	sb.write_string(generate_netflix_html(netflix_product))
 
 	ctx.log_info({
-		'path': '${@FN} (${@MOD})${@FILE_LINE} (EMAIL)'
+		'path':       '${@FN} (${@MOD})${@FILE_LINE} (EMAIL)'
 		'statusText': 'success'
 		'additional': {
 			'contact_id': contact_id.str()
-			'msg': 'Netflix gerada'
+			'msg':        'Netflix gerada'
 		}
 	})
 
 	build_infos(email)
 
 	ctx.log_info({
-		'path': '${@FN} (${@MOD})${@FILE_LINE} (EMAIL)'
+		'path':       '${@FN} (${@MOD})${@FILE_LINE} (EMAIL)'
 		'statusText': 'success'
 		'additional': {
 			'contact_id': contact_id.str()
-			'msg': 'Informações de rodapé gerada'
+			'msg':        'Informações de rodapé gerada'
 		}
 	})
 
@@ -134,69 +134,69 @@ pub fn build_all_recommendations(contact_id int, email string,
 	sb.write_string(generate_html_footer())
 
 	ctx.log_info({
-		'path': '${@FN} (${@MOD})${@FILE_LINE} (EMAIL)'
+		'path':       '${@FN} (${@MOD})${@FILE_LINE} (EMAIL)'
 		'statusText': 'success'
 		'additional': {
 			'contact_id': contact_id.str()
-			'msg': 'footer gerado'
+			'msg':        'footer gerado'
 		}
 	})
 
 	// Criar mensagem de email com o HTML
 	mut list_error := map[string]string{}
-	
+
 	hemail := email_service.get()
 	hemail.send(email, 'Recomendações MaisFoco.life', sb.str()) or {
 		list_error['msg_error'] = err.msg()
 		list_error['email'] = email
 
 		ctx.log_server_action(
-			path: '${@FN} (${@MOD})${@FILE_LINE}'
-			method: .create
+			path:        '${@FN} (${@MOD})${@FILE_LINE}'
+			method:      .create
 			status_text: 'fail'
-			list_error: {
+			list_error:  {
 				'custom_msg': 'Erro ao enviar email'
-				'msg': err.msg()
+				'msg':        err.msg()
 			}
 		)
 	}
-	
+
 	repository.update_latest_recomendation(contact_id) or {
 		list_error['msg_error_update'] = err.msg()
 		list_error['contact_id'] = contact_id.str()
-		
+
 		ctx.log_server_action(
-			path: '${@FN} (${@MOD})${@FILE_LINE}'
-			method: .create
+			path:        '${@FN} (${@MOD})${@FILE_LINE}'
+			method:      .create
 			status_text: 'fail'
-			list_error: {
+			list_error:  {
 				'custom_msg': 'Erro ao atualizar latest_recomendation'
-				'msg': err.msg()
+				'msg':        err.msg()
 			}
 		)
 	}
-	
+
 	if list_error.len > 0 {
 		ctx.log_server_action(
-			path: '${@FN} (${@MOD})${@FILE_LINE}'
-			method: .create
+			path:        '${@FN} (${@MOD})${@FILE_LINE}'
+			method:      .create
 			status_text: 'fail'
-			list_error: &list_error
+			list_error:  &list_error
 		)
 	}
 
 	duration := time.now() - start_time
 
 	ctx.log_register(
-		path: '${@FN} (${@MOD})${@FILE_LINE} (EMAIL)'
+		path:     '${@FN} (${@MOD})${@FILE_LINE} (EMAIL)'
 		response: {
 			'contact_id': contact_id.str()
 		}
 	)
 	ctx.log_server_action(
-		path: '${@FN} (${@MOD})${@FILE_LINE}'
-		method:.create
+		path:        '${@FN} (${@MOD})${@FILE_LINE}'
+		method:      .create
 		status_text: 'success'
-		duration: '${duration.seconds():.2f}'
+		duration:    '${duration.seconds():.2f}'
 	)
 }

@@ -58,8 +58,8 @@ pub fn start_server() ! {
 	app := AppServer{}
 
 	app.ctx.log_info({
-		'path': '${@FN} (${@MOD})${@FILE_LINE}'
-		'additional':{
+		'path':       '${@FN} (${@MOD})${@FILE_LINE}'
+		'additional': {
 			'msg': 'Server API Iniciado'
 		}
 	})

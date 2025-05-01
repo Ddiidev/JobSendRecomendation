@@ -23,11 +23,11 @@ pub fn build_all_recommendations(contact_id int, whatsapp string,
 	build_amazon(ctx, whatsapp, amazon_products)
 
 	ctx.log_info({
-		'path': '${@FN} (${@MOD})${@FILE_LINE} (Whatapp)'
+		'path':       '${@FN} (${@MOD})${@FILE_LINE} (Whatapp)'
 		'statusText': 'success'
 		'additional': {
 			'contact_id': contact_id.str()
-			'msg': 'Amazon gerada'
+			'msg':        'Amazon gerada'
 		}
 	})
 
@@ -35,11 +35,11 @@ pub fn build_all_recommendations(contact_id int, whatsapp string,
 	build_instant_gaming(ctx, whatsapp, instant_gaming_product)
 
 	ctx.log_info({
-		'path': '${@FN} (${@MOD})${@FILE_LINE} (Whatapp)'
+		'path':       '${@FN} (${@MOD})${@FILE_LINE} (Whatapp)'
 		'statusText': 'success'
 		'additional': {
 			'contact_id': contact_id.str()
-			'msg': 'Instant Gaming gerada'
+			'msg':        'Instant Gaming gerada'
 		}
 	})
 
@@ -47,11 +47,11 @@ pub fn build_all_recommendations(contact_id int, whatsapp string,
 	build_livros_gratuitos(ctx, whatsapp, livros_gratuitos_product)
 
 	ctx.log_info({
-		'path': '${@FN} (${@MOD})${@FILE_LINE} (Whatapp)'
+		'path':       '${@FN} (${@MOD})${@FILE_LINE} (Whatapp)'
 		'statusText': 'success'
 		'additional': {
 			'contact_id': contact_id.str()
-			'msg': 'Livros gratuitos gerada'
+			'msg':        'Livros gratuitos gerada'
 		}
 	})
 
@@ -59,11 +59,11 @@ pub fn build_all_recommendations(contact_id int, whatsapp string,
 	build_mercado_livre_play(ctx, whatsapp, mercado_livre_play_product)
 
 	ctx.log_info({
-		'path': '${@FN} (${@MOD})${@FILE_LINE} (Whatapp)'
+		'path':       '${@FN} (${@MOD})${@FILE_LINE} (Whatapp)'
 		'statusText': 'success'
 		'additional': {
 			'contact_id': contact_id.str()
-			'msg': 'Mercado livre play gerada'
+			'msg':        'Mercado livre play gerada'
 		}
 	})
 
@@ -71,11 +71,11 @@ pub fn build_all_recommendations(contact_id int, whatsapp string,
 	build_netflix(ctx, whatsapp, netflix_product)
 
 	ctx.log_info({
-		'path': '${@FN} (${@MOD})${@FILE_LINE} (Whatapp)'
+		'path':       '${@FN} (${@MOD})${@FILE_LINE} (Whatapp)'
 		'statusText': 'success'
 		'additional': {
 			'contact_id': contact_id.str()
-			'msg': 'Netflix gerada'
+			'msg':        'Netflix gerada'
 		}
 	})
 
@@ -83,11 +83,11 @@ pub fn build_all_recommendations(contact_id int, whatsapp string,
 	build_infos(ctx, whatsapp)
 
 	ctx.log_info({
-		'path': '${@FN} (${@MOD})${@FILE_LINE} (Whatapp)'
+		'path':       '${@FN} (${@MOD})${@FILE_LINE} (Whatapp)'
 		'statusText': 'success'
 		'additional': {
 			'contact_id': contact_id.str()
-			'msg': 'Informações de rodapé gerada'
+			'msg':        'Informações de rodapé gerada'
 		}
 	})
 

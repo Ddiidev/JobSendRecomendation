@@ -25,8 +25,8 @@ fn build_instant_gaming(ctx ctx_service.ContextService, whatsapp string, instant
 			'status_text': 'fail'
 			'list_error':  {
 				'product': instant_gaming.id.str()
-				'error': err.msg()
-				'code':  err.code().str()
+				'error':   err.msg()
+				'code':    err.code().str()
 			}
 		})
 	}

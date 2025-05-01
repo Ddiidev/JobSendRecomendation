@@ -26,8 +26,8 @@ fn build_mercado_livre_play(ctx ctx_service.ContextService, whatsapp string, mer
 			'status_text': 'fail'
 			'list_error':  {
 				'product': mercado_livre_play.id.str()
-				'error': err.msg()
-				'code':  err.code().str()
+				'error':   err.msg()
+				'code':    err.code().str()
 			}
 		})
 	}

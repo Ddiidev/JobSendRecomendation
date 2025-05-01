@@ -2,6 +2,7 @@ module services
 
 import time
 import repository as contact_repository
+import mf_core.features.contacts.repository as mf_contact_repository
 import recomendation.services.email_builders
 import mf_core.context_service as ctx_service
 import recomendation.services.whtasapp_builders
@@ -43,18 +44,8 @@ pub fn send_recomendations() {
 		)
 	}
 
-	contatcs := contact_repository.get_all(0) or {
-		ctx.log_server_action(
-			path:        'JOB: ENVIO DE RECOMENDAÇÕES(GET_CONTATOS)'
-			status_text: 'fail'
-			list_error:  {
-				'error_code': err.code().str()
-				'error':      err.msg()
-			}
-		)
+	contatcs := mf_contact_repository.get_all_non_updated(0)
 
-		return
-	}
 	amazon_products := amazon_controllers.get_recomendation(mut ctx) or {
 		fn_log_product(err, 'AMAZON')
 

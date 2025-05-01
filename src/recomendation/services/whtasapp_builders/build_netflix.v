@@ -23,8 +23,8 @@ fn build_netflix(ctx ctx_service.ContextService, whatsapp string, netflix netfli
 			'status_text': 'fail'
 			'list_error':  {
 				'product': netflix.id.str()
-				'error': err.msg()
-				'code':  err.code().str()
+				'error':   err.msg()
+				'code':    err.code().str()
 			}
 		})
 	}

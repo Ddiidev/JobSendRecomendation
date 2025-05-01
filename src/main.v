@@ -1,6 +1,7 @@
 module main
 
 import time
+import gift_draw
 import maisfoco_server
 import recomendation.services
 import mf_core.context_service as ctx_service
@@ -100,7 +101,9 @@ fn main() {
 			'statusText': 'success'
 		})
 
+		go gift_draw.draw_lots(current_time)
 		services.send_recomendations()
+
 		println('--> Enviado')
 		ctx.log_info({
 			'path':       'MAIN | Enviado.'

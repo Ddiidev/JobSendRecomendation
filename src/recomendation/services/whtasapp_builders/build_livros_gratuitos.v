@@ -24,8 +24,8 @@ fn build_livros_gratuitos(ctx ctx_service.ContextService, whatsapp string, livro
 			'status_text': 'fail'
 			'list_error':  {
 				'product': livro_gratuito.id.str()
-				'error': err.msg()
-				'code':  err.code().str()
+				'error':   err.msg()
+				'code':    err.code().str()
 			}
 		})
 	}
